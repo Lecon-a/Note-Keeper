@@ -495,6 +495,28 @@ ul, li {
         -webkit-padding-end: 0!important;
         justify-content: space-between;
     }
+
+    .new-edit-wrapper {
+            gap: 8px;
+            padding: 0 8px;
+        }
+
+        .edit-sidebar {
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.sidebar-badge {
+    display: none;
+}
+
+    .edit-sidebar-2 {
+        display: none;
+    }
+
+    .form-control {
+    width: 100%;
+}
 }
 
 
