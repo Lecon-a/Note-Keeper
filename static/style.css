@@ -517,6 +517,11 @@ ul, li {
     .form-control {
     width: 100%;
 }
+
+footer {
+    position: relative;
+    text-align: center;
+}
 }
 
 
