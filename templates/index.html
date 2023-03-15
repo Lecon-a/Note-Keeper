@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Keeper</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <nav>
+                <ul>
+                    <li>
+                        <button class="tab">Home</button>
+                    </li>
+                    <li>
+                        <button class="tab">New</button>
+                    </li>
+                    <li>
+                        <button class="tab">Edit</button>
+                    </li>
+                    <li>
+                        <button class="tab">Delete</button>
+                    </li>
+                    
+                </ul>
+            </nav>
+        </header>
+        <div class="home-wrapper">
+            <div class='main-container' >
+                <h1 class='main-title'>
+                    <span>Notes</span><span class="count badge">{{ total_notes }}</span>
+                </h1>
+                <div class="inner-main-container">
+                    <form method="get">
+                        <div class="form-control">
+                            <label for="search">Search</label>
+                            <input type="text" placeholder="Search">
+                            <button>Find</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <h3 class="sub-title">Topics</h3>
+            <ul class="main-list scroll">
+                {% for note in notes %}
+                <li>
+                    <a class="read-note-anchor" data-id={{note.note_id}}>{{ note.note_topic }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="delete-wrapper hide">
+            <div class="delete-result hide">
+                <span class="close">X</span>
+                <div class="inner-delete-result">
+                    <h2>Result</h2>
+                    <div class="result"></div>
+                </div>
+            </div>
+            <!-- Delete content here -->
+            <h1 class='main-title' ><span>Notes</span><span class="count badge">{{ total_notes }}</span></h1>
+            <h3 class="sub-title">Delete</h3>
+            <ul class="main-list scroll">
+                {% for note in notes %}
+                <li class="delete-item">
+                    <a href="">{{ note.note_topic }}</a>
+                    <button data-id={{note.note_id}} class="delete-btn">X</button>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="new-edit-wrapper hide">
+            <div class="edit-sidebar hide">
+                <div style="display: flex; flex-direction: column;">
+                    <h2 class="main-title"><span>Saved Notes</span><span class="count sidebar-badge">{{ total_notes }}</span></h2>
+                    <ul class="main-list sidebar-scroll">
+                    {% for note in notes %}
+                    <li class="class" style="position: relative;">
+                        <a class="edit-anchor" data-id={{note.note_id}}>{{ note.note_topic[0:30] }}...</a>
+                        {% if note.note_body %}
+                            <span class="pop-up-hint">{{note.note_body[0:21]}}...</span>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+                </div>
+            </div>
+            <form action="/notes" id="form" class="form hide" method="POST">
+            <h3 class="dynamic-title"></h3>
+            <div class="form-control">
+                <label for="noteTopic">Topic: </label>
+                <input type="text" name="noteTopic" id="note-topic" class="note-title" placeholder="Type in Note Topic Here">
+            </div>
+            <div class="form-control">
+                <label for="noteBody">Body</label>
+                <textarea name="noteBody" id="note-body" class="note-body" cols="30" rows="10" placeholder="Type in your text here"></textarea>
+            </div>
+            <div class="form-control">
+                <button class="button" type="submit">Save</button>
+            </div>
+        </form>
+        <div class="edit-sidebar-2 hide">
+                
+            </div>
+        </div>
+
+        <div class="home-wrapper single-note-wrapper hide">
+            <div class="tools-bar">
+                <div class="tool-label">Tools Box</div>
+                <div class="tool increaseFont">
+                    <h3 style="margin: 0; padding: 1.5px 0 0; width: 100%; height: 20px;text-align: center;">A</h3>
+                    <span class="pop-up-hint">Increase the font size</span>
+                </div>
+                <div class="tool decreaseFont">
+                    <h3 style="font-size: 14px; padding-top: 4px; margin: 0; width: 100%; height: 20px;text-align: center;">A</h3>
+                    <span class="pop-up-hint">Decrease the font size</span>
+                </div>
+                <div class="tool changeColor">
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <h3 style="margin: 0; width: 100%; height: 20px;text-align: center;">A</h3>
+                        <span style="width: 100%; height: 4px; background-color: red; margin: 0;"></span>
+                    </div>
+                    <span class="pop-up-hint">Change note body text color</span>
+                </div>
+                <div class="tool textAlignJustify">
+                    <div class="text-center-tool">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <span class="pop-up-hint">Justify Content</span>
+                </div>
+                <div class="tool textAlignCenter">
+                    <div class="text-center-tool" style="align-items: center;">
+                        <span></span>
+                        <span style="width: 70%;"></span>
+                        <span></span>
+                        <span style="width:70%;"></span>
+                        <span></span>
+                        <span style="width:70%;"></span>
+                    </div>
+                    <span class="pop-up-hint">Content Center</span>
+                </div>
+                <div class="tool boldText">
+                    <h3 style="margin: 0; padding: 1.5px 0 0; width: 100%; height: 20px;text-align: center;">B</h3>
+                    <span class="pop-up-hint">Bold the Content</span>
+                </div>
+                <button class="print-button">Print</button>
+            </div>
+            <div class="single-note-heading" style="display:flex; justify-content: space-between;align-items: center;">
+                <h2 class="main-title single-note-topic"></h2>
+            </div>
+            <p class="read-note-block single-note-body print"></p>
+        </div>
+
+        <footer>
+            <div class="inner-footer">
+                <div>SPLearning Developer &copy; 2023</div>
+                <div>+234816 5115 527</div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="static/js/process.js"></script>
+    <script src="static/js/singleNote.js"></script>
+    <script src="static/js/tools.js"></script>
+</body>
+</html>
