@@ -8,6 +8,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+def create_app():
+    return app
+
 
 class Note(db.Model):
     __tablename__ = 'notes'
