@@ -83,6 +83,10 @@ ul, li {
             gap: 15px;
         }
 
+        nav ul:last-child {
+            gap: 0;
+        }
+
         nav ul li button {
             width: 70px;
             border: none;
@@ -155,6 +159,7 @@ ul, li {
             position: absolute;
             bottom: 0;
             right: 0;
+            left: 0;
             padding: 8px 32px;
             text-align: right;
             color: #777777;
@@ -482,6 +487,14 @@ ul, li {
     height: 1px;
     width: 100%;
     box-sizing: border-box;
+}
+
+@media screen and (max-width: 616px) {
+    nav ul {
+        -webkit-padding-start: 0!important;
+        -webkit-padding-end: 0!important;
+        justify-content: space-between;
+    }
 }
 
 
