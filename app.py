@@ -1,10 +1,11 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 import sys
+import os
 from flask_sqlalchemy import SQLAlchemy
-from configDB import db_config
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = db_config
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+# postgres://note_keeper_db_user:I9mrqW7ubeHg3ZpHkqmwetgVfCwCAYSl@dpg-cg8q9iu4dad531ta11s0-a.oregon-postgres.render.com/note_keeper_db
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
