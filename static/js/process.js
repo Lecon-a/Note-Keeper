@@ -45,7 +45,7 @@ document.getElementById("form").addEventListener("submit", (e) => {
   e.preventDefault();
   // send to the endpoint
   const url = document.getElementById("form").action;
-  if (url === "http://127.0.0.1:5000/notes") {
+  if (url === "https://note-keeper-app-lvjd.onrender.com/notes") {
     save();
   } else {
     editNote(note_id);
@@ -53,7 +53,7 @@ document.getElementById("form").addEventListener("submit", (e) => {
 });
 
 const allNotes = () => {
-  fetch("/allNotes", {
+  fetch("https://note-keeper-app-lvjd.onrender.com//allNotes", {
     method: "get",
     headers: {
       "Content-Type": "application/app",
@@ -71,7 +71,7 @@ const allNotes = () => {
 };
 
 const save = () => {
-  fetch("/notes", {
+  fetch("https://note-keeper-app-lvjd.onrender.com/notes", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -107,7 +107,7 @@ deleteButtons.forEach((button) => {
 });
 
 const deleteNote = (n_id) => {
-  fetch(`/notes/${n_id}`, {
+  fetch(`https://note-keeper-app-lvjd.onrender.com/notes/${n_id}`, {
     method: "delete",
     headers: {
       "Content-Type": "application/app",
@@ -126,7 +126,7 @@ const deleteNote = (n_id) => {
 };
 
 const editNote = (n_id) => {
-  fetch(`/notes/${n_id}/edit`, {
+  fetch(`https://note-keeper-app-lvjd.onrender.com/notes/${n_id}/edit`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
