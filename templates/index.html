@@ -95,7 +95,15 @@
             <div class="edit-sidebar hide">
                 <div style="display: flex; flex-direction: column;">
                     <h2 class="main-title"><span>Chat-GPT Interface</span><span class="count sidebar-badge"></span></h2>
-                    
+                    <div class="gpt-form-container">
+                        <form action="/chat" id="chat-gpt" method="post">
+                            <label for="prompt">Prompt</label>
+                            <input type="text" name="prompt" placeholder="Enter your question or topic">
+                        </form>
+                    </div>
+                    <div class="gpt-response">
+                        <p class="gpt-response-display">GPT Response</p>
+                    </div>
                 </div>
             </div>
             <form action="/notes" id="form" class="form hide" method="POST">
