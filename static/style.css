@@ -517,6 +517,16 @@ ul, li {
     .form-control {
     width: 100%;
 }
+
+footer {
+    position: relative;
+    text-align: center;
+}
+
+.new-edit-wrapper {
+            height: fit-content;
+            margin-bottom: 30px;
+}
 }
 
 
