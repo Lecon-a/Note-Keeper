@@ -1,7 +1,8 @@
-from flask import Flask, render_template, jsonify, request, redirect, url_for
+from flask import Flask, render_template, jsonify, request
 import sys
 import os
 from flask_sqlalchemy import SQLAlchemy
+from gpt import tokenizer, model
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
@@ -134,3 +135,33 @@ def all_notes():
         'data': data,
         'data_length': len(data)
     })
+
+
+@app.route("/chat", methods=["POST"])
+def chat_with_gpt():
+    data = request.json
+    context = data["context"]
+    prompt = data["prompt"]
+    length = data.get("length", 50)
+    top_k = data.get("top_k", 0)
+    top_p = data.get("top_p", 0.9)
+    pass
+    # Tokenize the input
+    # inputs = tokenizer.encode(context + prompt, return_tensors="pt")
+
+    # Generate output using the Chat-GPT model
+    # output = model.generate(
+    #     inputs,
+    #     max_length=length + len(prompt),
+    #     temperature=1.0,
+    #     top_k=top_k,
+    #     top_p=top_p,
+    #     repetition_penalty=1.2,
+    #     do_sample=True,
+    #     num_return_sequences=1,
+    # )
+
+    # Decode the output
+    #response = tokenizer.decode(output[0], skip_special_tokens=True)
+
+    #return jsonify({"response": response})
